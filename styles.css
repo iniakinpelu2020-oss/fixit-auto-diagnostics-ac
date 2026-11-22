@@ -1,0 +1,348 @@
+/* FixIt Auto Diagnostics & AC — workshop slate, blue, amber
+   Template B: dispatch strip, focus cards, job card */
+
+:root{
+  --bg:#0e1317;
+  --panel:#161d23;
+  --panel-2:#1d262d;
+  --ink:#eef3f6;
+  --muted:#95a5b0;
+  --muted-2:#61727e;
+  --blue:#3b8fe0;
+  --blue-deep:#1f5f9e;
+  --amber:#f4a72c;
+  --amber-2:#ffc25e;
+  --line:rgba(255,255,255,.1);
+  --line-2:rgba(255,255,255,.22);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --maxw:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Rubik",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+svg{max-width:100%;height:auto}
+h1,h2,h3{font-family:"Saira Condensed","Arial Narrow",sans-serif;font-weight:600;line-height:.98;margin:0;letter-spacing:.005em;text-transform:uppercase}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#1a1206;padding:10px 16px;z-index:200}
+.skip:focus{left:12px;top:12px}
+.eyebrow{
+  display:block;font-family:"Red Hat Mono",ui-monospace,monospace;font-size:10.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+}
+.sec{max-width:660px;margin-bottom:32px}
+.sec .eyebrow{margin-bottom:14px}
+.sec h2{font-size:clamp(34px,5vw,62px)}
+.sec__lede{margin-top:14px;color:var(--muted);max-width:52ch}
+
+/* ---------- boot ---------- */
+.boot{
+  position:fixed;inset:0;z-index:130;display:grid;place-content:center;justify-items:center;gap:14px;
+  background:var(--bg);overflow:hidden;animation:bootOut 2.2s var(--ease) forwards;
+}
+.boot__word{font-family:"Saira Condensed",sans-serif;font-size:56px;font-weight:700;letter-spacing:.14em;color:var(--ink)}
+.boot__scan{
+  display:block;width:220px;height:2px;background:linear-gradient(90deg,transparent,var(--amber),transparent);
+  animation:scan 1.4s var(--ease) infinite;
+}
+.boot__sub{font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2)}
+@keyframes scan{0%{transform:scaleX(.2);opacity:.3}50%{transform:scaleX(1);opacity:1}100%{transform:scaleX(.2);opacity:.3}}
+@keyframes bootOut{0%,80%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+
+/* ---------- alert bar ---------- */
+.alertbar{background:#0a0f12;border-bottom:1px solid var(--line);font-size:12px}
+.alertbar__in{display:flex;align-items:center;gap:14px;min-height:38px;flex-wrap:wrap}
+.alertbar__dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(244,167,44,.16)}
+.alertbar__label{font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.alertbar__mid{margin-left:auto;color:var(--muted-2);font-size:11.5px}
+.alertbar__phone{font-family:"Red Hat Mono",monospace;font-size:11px;color:var(--amber)}
+.alertbar__phone:hover{color:var(--amber-2)}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:70;background:rgba(14,19,23,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.top__in{display:flex;align-items:center;gap:24px;min-height:74px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand__mark{
+  display:grid;place-items:center;width:40px;height:40px;border-radius:3px;
+  background:var(--panel-2);border:1px solid var(--line-2);color:var(--amber);
+  font-family:"Saira Condensed",sans-serif;font-size:16px;font-weight:700;letter-spacing:.06em;
+}
+.brand__mark--amber{background:var(--amber);border-color:var(--amber);color:#1a1206}
+.brand__txt{display:flex;flex-direction:column;font-family:"Saira Condensed",sans-serif;font-size:20px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.05}
+.brand__txt small{font-family:"Rubik",sans-serif;font-size:9.5px;font-weight:400;letter-spacing:.14em;color:var(--muted-2);text-transform:uppercase;margin-top:3px}
+.nav{display:flex;gap:24px;margin-left:auto;font-size:13px;color:var(--muted)}
+.nav a{padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .25s}
+.nav a:hover{color:var(--ink);border-bottom-color:var(--blue)}
+.pill{
+  padding:11px 18px;border-radius:3px;background:var(--blue);color:#06121d;
+  font-family:"Red Hat Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  transition:background .22s,transform .28s var(--ease);
+}
+.pill:hover{background:#4fa1ef;transform:translateY(-1px)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 22px;border:1.5px solid transparent;border-radius:3px;
+  font-family:"Red Hat Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .22s,color .22s,border-color .22s;
+}
+.btn--amber{background:var(--amber);color:#1a1206;font-weight:500}
+.btn--amber:hover{background:var(--amber-2);transform:translateY(-2px);box-shadow:0 18px 26px -18px rgba(244,167,44,.85)}
+.btn--ghost{border-color:var(--line-2);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--blue);color:#fff;background:rgba(59,143,224,.12);transform:translateY(-2px)}
+
+/* ---------- hero ---------- */
+.hero{padding:50px 0 76px}
+.hero__grid{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center}
+.hero__copy .eyebrow{margin-bottom:18px}
+.hero h1{font-size:clamp(44px,6.4vw,84px);letter-spacing:.005em}
+.hero h1 span{color:var(--amber)}
+.lede{margin-top:20px;max-width:44ch;color:var(--muted);font-size:16.5px;line-height:1.66}
+.hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.hero__meta{display:flex;align-items:center;gap:12px;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted-2)}
+.hero__rating{font-family:"Red Hat Mono",monospace;font-size:11.5px;color:var(--muted)}
+.hero__rating b{color:var(--amber);font-size:13px}
+.hero__sep{color:var(--line-2)}
+
+.hero__stage{position:relative}
+.hero__pic{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:8px}
+.hero__pic img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:2px}
+.hero__pic figcaption{
+  display:flex;gap:10px;align-items:center;padding:10px 4px 3px;
+  font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);
+}
+.hero__pic figcaption span{color:var(--blue)}
+.hero__ticket{
+  position:absolute;right:-8px;bottom:-22px;display:grid;gap:1px;padding:14px 18px;
+  background:var(--panel-2);border:1px solid var(--line-2);border-left:3px solid var(--amber);border-radius:3px;
+  box-shadow:0 26px 44px -30px rgba(0,0,0,.95);
+}
+.hero__ticketlabel{font-family:"Red Hat Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.hero__ticket strong{font-family:"Saira Condensed",sans-serif;font-size:30px;font-weight:700;line-height:1;color:var(--amber-2)}
+.hero__ticketsub{font-size:11px;color:var(--muted)}
+
+/* ---------- services ---------- */
+.services{padding:84px 0 86px;background:#0b1014;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.filter{
+  padding:8px 14px;border:1px solid var(--line-2);border-radius:3px;
+  font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  transition:background .2s,color .2s,border-color .2s,transform .25s var(--ease);
+}
+.filter:hover{border-color:var(--blue);color:var(--ink)}
+.filter.is-on{background:var(--blue);border-color:var(--blue);color:#06121d}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;perspective:1100px}
+.card{
+  position:relative;display:flex;flex-direction:column;gap:0;
+  background:var(--panel);border:1px solid var(--line);border-radius:3px;overflow:hidden;
+  transform-style:preserve-3d;transform:translateZ(0);cursor:pointer;
+  transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease);
+  touch-action:pan-y;
+}
+.card.is-hidden{display:none}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.card.is-on{
+  border-color:var(--amber);transform:translateZ(26px) translateY(-4px);
+  box-shadow:0 30px 50px -32px rgba(0,0,0,.95),0 0 0 1px rgba(244,167,44,.35) inset;
+}
+.card__pic{position:relative;overflow:hidden;background:#0a0f12}
+.card__pic img{width:100%;aspect-ratio:16/10;object-fit:cover;opacity:.9;transition:transform .6s var(--ease),opacity .3s}
+.card:hover .card__pic img{transform:scale(1.03);opacity:1}
+.card__code{
+  position:absolute;left:10px;top:10px;padding:4px 7px;background:rgba(10,15,18,.82);
+  border:1px solid var(--line-2);border-radius:2px;
+  font-family:"Red Hat Mono",monospace;font-size:9px;letter-spacing:.12em;color:var(--blue);
+}
+.card.is-on .card__code{color:var(--amber);border-color:rgba(244,167,44,.5)}
+.card__body{display:flex;flex-direction:column;gap:7px;padding:16px 16px 0;flex:1}
+.card__no{font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+.card h3{font-size:25px;line-height:1}
+.card__body p{font-size:13.5px;line-height:1.55;color:var(--muted);flex:1}
+.card__price{font-family:"Saira Condensed",sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:.01em}
+.card.is-on .card__price{color:var(--amber-2)}
+.card__add{
+  display:block;padding:12px 16px;border-top:1px solid var(--line);
+  font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  transition:background .2s,color .2s;
+}
+.card.is-on .card__add{background:rgba(244,167,44,.14);color:var(--amber-2)}
+
+/* ---------- job card ---------- */
+.job{padding:86px 0 88px}
+.job__grid{display:grid;grid-template-columns:1fr .82fr;gap:52px;align-items:start}
+.job__notes{margin-top:8px;display:grid;gap:12px}
+.job__notes li{position:relative;padding-left:20px;font-size:14px;color:var(--muted)}
+.job__notes li::before{
+  content:"";position:absolute;left:0;top:8px;width:7px;height:7px;
+  background:var(--blue);border-radius:1px;
+}
+.job__notes b{color:var(--ink);font-weight:500}
+
+.panel{
+  position:sticky;top:100px;background:var(--panel-2);border:1px solid var(--line-2);
+  border-radius:3px;padding:22px;box-shadow:0 34px 60px -40px rgba(0,0,0,.9);
+}
+.panel__head{
+  display:flex;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid var(--line-2);
+  font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);
+}
+.panel__ref{color:var(--blue)}
+.panel__lines{margin-top:2px;min-height:66px}
+.panel__lines li{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.panel__lines li b{font-family:"Saira Condensed",sans-serif;font-size:17px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.panel__lines .empty{color:var(--muted-2);font-style:italic;border-bottom:0}
+.panel__total{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:16px 0 18px}
+.panel__total span{font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.panel__total strong{
+  font-family:"Saira Condensed",sans-serif;font-size:42px;font-weight:700;line-height:.9;color:var(--amber-2);
+  display:inline-block;transition:transform .22s var(--ease);
+}
+.panel__total strong.pop{transform:scale(1.05)}
+.panel .btn{width:100%}
+.panel .btn + .btn{margin-top:8px}
+.panel__fine{margin-top:12px;font-size:11px;line-height:1.5;color:var(--muted-2)}
+
+/* ---------- how ---------- */
+.how{padding:80px 0 84px;background:#0b1014;border-top:1px solid var(--line)}
+.how__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.howcard{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:22px;transition:transform .4s var(--ease),border-color .3s}
+.howcard:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.howcard__no{
+  display:inline-block;padding:4px 8px;background:rgba(59,143,224,.14);border:1px solid rgba(59,143,224,.4);
+  font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.14em;color:var(--blue);
+}
+.howcard h3{font-size:24px;margin:14px 0 8px}
+.howcard p{font-size:13.5px;color:var(--muted)}
+
+/* ---------- bay ---------- */
+.bay{padding:86px 0}
+.bay__grid{display:grid;grid-template-columns:1fr .8fr;gap:52px;align-items:start}
+.bay h2{font-size:clamp(32px,4.2vw,54px);margin-top:14px}
+.bay__copy{margin-top:14px;color:var(--muted);font-size:15.5px;max-width:42ch}
+.bay__chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.bay__chips li{
+  padding:8px 13px;border:1px solid var(--line-2);border-radius:3px;font-size:12px;color:var(--muted);
+  transition:transform .26s var(--ease),border-color .22s,color .22s;
+}
+.bay__chips li:hover{transform:translateY(-2px);border-color:var(--amber);color:var(--ink)}
+.bay__card{background:var(--panel-2);border:1px solid var(--line-2);border-radius:3px;padding:24px}
+.bay__tag{font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.bay__phone{display:block;font-family:"Saira Condensed",sans-serif;font-size:30px;font-weight:600;letter-spacing:.02em;margin-top:10px}
+.bay__phone:hover{color:var(--amber-2)}
+.bay__wa{display:inline-block;margin-top:8px;font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.bay__meta{display:grid;gap:9px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.bay__meta div{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--muted-2)}
+.bay__meta strong{color:var(--ink);font-weight:500;text-align:right}
+
+/* ---------- reviews ---------- */
+.reviews{padding:76px 0 88px;border-top:1px solid var(--line)}
+.reviews__grid{display:grid;grid-template-columns:.58fr 1.42fr;gap:48px;align-items:start}
+.score{display:flex;flex-direction:column;gap:6px}
+.score__num{font-family:"Saira Condensed",sans-serif;font-size:92px;font-weight:700;line-height:.82;color:var(--ink)}
+.score__stars{color:var(--amber);font-size:13px;letter-spacing:.2em}
+.score__meta{font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.facts h2{font-size:clamp(26px,3.2vw,40px);margin-bottom:18px}
+.facts__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fact{border-top:2px solid var(--blue);padding-top:13px}
+.fact span{font-family:"Red Hat Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.fact p{margin-top:7px;font-size:13px;color:var(--muted)}
+
+/* ---------- footer ---------- */
+.foot{background:#0a0f12;border-top:1px solid var(--line);padding:54px 0 20px}
+.foot__in{display:flex;gap:44px;flex-wrap:wrap;justify-content:space-between;padding-bottom:30px;border-bottom:1px solid var(--line)}
+.foot__brand{display:flex;gap:12px;align-items:center}
+.foot__brand strong{display:block;font-family:"Saira Condensed",sans-serif;font-size:19px;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.foot__brand span{font-size:12px;color:var(--muted-2)}
+.foot__cols{display:flex;gap:44px;flex-wrap:wrap}
+.foot__cols>div{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.foot__cols>div>span:first-child{font-family:"Red Hat Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);margin-bottom:2px}
+.foot__cols a,.foot__cols span{color:var(--muted)}
+.foot__cols a:hover{color:var(--amber-2)}
+.foot__base{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.1em;color:var(--muted-2)}
+
+/* ---------- drawer + bar ---------- */
+.scrim{position:fixed;inset:0;z-index:90;background:rgba(5,8,10,.68);opacity:0;transition:opacity .35s var(--ease)}
+.scrim.is-open{opacity:1}
+.scrim[hidden]{display:none}
+.drawer{
+  position:fixed;top:0;right:0;bottom:0;z-index:100;width:min(410px,100%);
+  background:var(--panel-2);border-left:1px solid var(--line-2);padding:22px;
+  display:flex;flex-direction:column;gap:8px;transform:translateX(104%);
+  transition:transform .45s var(--ease);box-shadow:-30px 0 60px -34px rgba(0,0,0,.95);
+}
+.drawer.is-open{transform:translateX(0)}
+.drawer__top{display:flex;align-items:center;justify-content:space-between;font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.drawer__close{width:34px;height:34px;border:1px solid var(--line-2);display:grid;place-items:center;transition:background .2s,transform .3s var(--ease)}
+.drawer__close:hover{background:rgba(255,255,255,.08);transform:rotate(90deg)}
+.drawer__list{flex:1;overflow:auto;margin-top:10px}
+.drawer__list li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.drawer__list li b{font-family:"Saira Condensed",sans-serif;font-size:18px;font-weight:600;white-space:nowrap}
+.drawer__total{display:flex;justify-content:space-between;align-items:flex-end;padding:15px 0;border-top:1px solid var(--line-2);font-family:"Red Hat Mono",monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+.drawer__total strong{font-family:"Saira Condensed",sans-serif;font-size:36px;line-height:.9;letter-spacing:.02em;color:var(--amber-2);text-transform:none}
+.drawer .btn{width:100%}
+.drawer__list .empty{color:var(--muted-2);font-style:italic;border-bottom:0}
+
+.mbar{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;
+  align-items:center;gap:8px;padding:10px 13px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(14,19,23,.97);border-top:1px solid var(--line-2);backdrop-filter:blur(12px);
+}
+.mbar__sum{display:flex;flex-direction:column;line-height:1.1}
+.mbar__sum span{font-family:"Red Hat Mono",monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+.mbar__sum strong{font-family:"Saira Condensed",sans-serif;font-size:21px;color:var(--amber-2)}
+.mbar__open{flex:1;padding:11px;border-radius:3px;background:var(--blue);color:#06121d;font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.mbar__wa{padding:11px 14px;border-radius:3px;border:1px solid var(--line-2);font-family:"Red Hat Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- responsive (last) ---------- */
+@media (max-width:1080px){
+  .hero__grid{grid-template-columns:1fr;gap:46px}
+  .hero__stage{max-width:620px}
+  .cards{grid-template-columns:1fr 1fr}
+  .job__grid{grid-template-columns:1fr;gap:32px}
+  .panel{position:static}
+  .bay__grid{grid-template-columns:1fr;gap:30px}
+}
+@media (max-width:900px){
+  .nav{display:none}
+  .alertbar__mid{display:none}
+  .alertbar__phone{margin-left:auto}
+  .how__grid{grid-template-columns:1fr}
+  .reviews__grid{grid-template-columns:1fr;gap:30px}
+  .facts__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  body{font-size:16px;padding-bottom:74px}
+  .wrap{padding:0 18px}
+  .top__in{min-height:66px;gap:12px}
+  .brand__txt{font-size:18px}
+  .pill{padding:9px 13px;font-size:9.5px}
+  .hero{padding:30px 0 54px}
+  .hero h1{font-size:clamp(38px,11.5vw,60px)}
+  .hero__ticket{right:0;bottom:-18px;padding:11px 14px}
+  .hero__ticket strong{font-size:25px}
+  .services,.job,.how,.bay,.reviews{padding:56px 0}
+  .cards{grid-template-columns:1fr}
+  .card__pic img{aspect-ratio:16/9}
+  .panel{padding:18px}
+  .panel__total strong{font-size:38px}
+  .bay__phone{font-size:26px}
+  .facts__grid{grid-template-columns:1fr}
+  .foot__cols{gap:24px}
+  .drawer{width:100%;padding:18px}
+  .mbar{display:flex}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .boot{display:none}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
